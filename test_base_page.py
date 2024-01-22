@@ -16,3 +16,4 @@ class TestBasePase:
             EC.presence_of_element_located((By.CSS_SELECTOR, "[id='btnFindCity']"))
         )
         assert button.is_displayed()
+
