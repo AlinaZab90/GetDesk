@@ -15,5 +15,8 @@ class TestBasePase:
         wait.until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "[id='btnFindCity']"))
         )
+        localization = {"ru": "Найти", "en": "Find", "fr": "Trouver"}
+
         assert button.is_displayed()
+        assert button.text == localization[language]
 
