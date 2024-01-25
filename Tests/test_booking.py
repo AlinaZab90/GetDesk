@@ -32,9 +32,9 @@ class TestBooking:
     def test_iframe(self, browser):
         open_page(browser, office_page_link)
         calculator(browser)
-        booking_basket(browser)
-        f = iframe(browser)
-        assert f.find_element(By.CSS_SELECTOR, '[id="card"]').is_displayed()
-
+        summ = booking_basket(browser)
+        cp_summ = (iframe(browser)).split(",")[0]
+        assert cp_summ in summ
+#f.find_element(By.CSS_SELECTOR, '[id="card"]').is_displayed()
 
 
