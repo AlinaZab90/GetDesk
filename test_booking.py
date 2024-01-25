@@ -8,7 +8,7 @@ from Pages.booking_page import *
 
 office_page_link = "https://getdesk.com/ru/office/66"
 class TestBooking:
-    def test_booking_basket(self, browser):
+    def test_open_booking_page(self, browser):
         open_page(browser, office_page_link)
         assert browser.find_element(By.XPATH, '//*[@class="office-page-space-head"]').is_displayed()
         assert browser.find_element(By.XPATH, '//*[@class="office-page-space-item__instant"]').is_displayed()

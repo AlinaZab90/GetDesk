@@ -28,7 +28,6 @@ def booking_basket(browser):
     browser.execute_script("window.scrollTo (0, 1200)")
     time.sleep(2)
     browser.find_element(By.XPATH, '//button[@data-id="115"]').click()
-    time.sleep(2)
     browser.find_element(By.CSS_SELECTOR, '[id="bookingRooms"]').click()
     return browser.find_element(By.CSS_SELECTOR, '[class="to-result"]').text
 
