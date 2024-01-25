@@ -1,11 +1,5 @@
 import time
-
-import pytest
-from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from conftest import browser
-from conftest import login
 
 
 class TestRegistration:

@@ -1,12 +1,9 @@
 import time
-import pytest
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from conftest import browser
 from conftest import browser_not_authorized
-from conftest import login
 from conftest import login_link
-from selenium.common.exceptions import NoSuchElementException
+
 
 
 
