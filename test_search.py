@@ -10,7 +10,7 @@ base_page_link = "https://getdesk.com/"
 search_link = "https://getdesk.com/ru/search?booking_type=with_confirmation&zoom=11&ne_lat=55.892904072950344&ne_lng=37.986028637695306&sw_lat=55.61779259893132&sw_lng=37.24857136230468"
 
 
-class TestBooking:
+class TestSearch:
 
     def test_search(self, browser):
         # login(browser)

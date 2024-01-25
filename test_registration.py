@@ -8,7 +8,7 @@ from conftest import browser
 from conftest import login
 
 
-class TestLogin:
+class TestRegistration:
     def test_login(self, browser_not_authorized):
         browser_not_authorized.get("https://getdesk.com/en/registration")
         browser_not_authorized.find_element(By.CSS_SELECTOR, '[type="email"]').send_keys("Test")

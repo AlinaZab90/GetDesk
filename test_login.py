@@ -10,7 +10,7 @@ from selenium.common.exceptions import NoSuchElementException
 
 
 
-class Test_Login:
+class TestLogin:
     def test_authorized_test_browser(self, browser):
         browser.get("https://getdesk.com/")
         browser.find_element(By.CSS_SELECTOR, '[class="user-btn"]').click()

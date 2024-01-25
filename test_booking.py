@@ -4,36 +4,37 @@ from conftest import browser
 from conftest import login
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from Pages.booking_page import *
 
 office_page_link = "https://getdesk.com/ru/office/66"
 class TestBooking:
     def test_booking_basket(self, browser):
-        browser.get(office_page_link)
-        browser.implicitly_wait(10)
-        browser.execute_script("window.scrollTo (0, 800)")
-        time.sleep(2)
+        open_page(browser, office_page_link)
+        assert browser.find_element(By.XPATH, '//*[@class="office-page-space-head"]').is_displayed()
+        assert browser.find_element(By.XPATH, '//*[@class="office-page-space-item__instant"]').is_displayed()
+
+
 #Выбор дат в календаре
-        calendar = browser.find_element(By.CSS_SELECTOR, '[class="input-field-calendar-title"]')
-        calendar.click()
-        browser.find_element(By.CSS_SELECTOR, '[class="lightpick__next-action"]').click()
-        browser.find_element(By.XPATH, '//div[@class="lightpick__days"]/div[5]').click()
-        browser.find_element(By.XPATH, '//div[@class="lightpick__days"]/div[6]').click()
-        browser.find_element(By.CSS_SELECTOR, '[id="btnChoiceDate"]').click()
+    def test_calendar(self, browser):
+        open_page(browser, office_page_link)
+        message = calculator(browser)
+        assert message == "Время бронирования рассчитывается по местному времени объекта"
+
 #Добавление помещений в корзину
-        browser.find_element(By.XPATH, '//button[@data-id="117"]').click()
-        browser.execute_script("window.scrollTo (0, 1200)")
-        time.sleep(2)
-        browser.find_element(By.XPATH, '//button[@data-id="115"]').click()
-        time.sleep(3)
-        browser.find_element(By.CSS_SELECTOR, '[id="bookingRooms"]').click()
-        time.sleep(3)
+    def test_booking_basket(self, browser):
+        open_page(browser, office_page_link)
+        calculator(browser)
+        summ = booking_basket(browser)
+        assert summ == 'Итого\n5 650 ₽'
+
+
 #Cloudpayments
-        #iframe = browser.find_element(By.TAG_NAME, 'iframe')
-        iframe = browser.find_element(By.XPATH, '//iframe[@allow="payment"]')
-        browser.switch_to.frame(iframe)
-        time.sleep(3)
-        assert browser.find_element(By.CSS_SELECTOR, '[id="card"]').is_displayed()
+    def test_iframe(self, browser):
+        open_page(browser, office_page_link)
+        calculator(browser)
+        booking_basket(browser)
+        f = iframe(browser)
+        assert f.find_element(By.CSS_SELECTOR, '[id="card"]').is_displayed()
 
 
 
