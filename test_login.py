@@ -9,6 +9,7 @@ from conftest import login_link
 from selenium.common.exceptions import NoSuchElementException
 
 
+
 class Test_Login:
     def test_authorized_test_browser(self, browser):
         browser.get("https://getdesk.com/")
@@ -27,9 +28,9 @@ class Test_Login:
         browser_not_authorized.implicitly_wait(10)
         browser_not_authorized.find_element(By.CSS_SELECTOR, "[name='email']").send_keys("test@mail.ru")
         browser_not_authorized.find_element(By.CSS_SELECTOR, '[name="password"]').send_keys("Testtest12345")
+        time.sleep(5)
         browser_not_authorized.find_element(By.CSS_SELECTOR, '[class="btn btn-accent"]').click()
         time.sleep(5)
         error = browser_not_authorized.find_element(By.XPATH, '//*[text()="Incorrect login or password"]').text
         assert error == "Incorrect login or password"
-
 

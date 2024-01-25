@@ -21,6 +21,7 @@ def browser():
 
     browser = webdriver.Chrome(options=options)
     browser.maximize_window()
+    browser.implicitly_wait(5)
     #browser.get("https://getdesk.com/")
 
     yield browser
