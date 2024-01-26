@@ -35,6 +35,6 @@ class TestBooking:
         summ = booking_basket(browser)
         cp_summ = (iframe(browser)).split(",")[0]
         assert cp_summ in summ
-#f.find_element(By.CSS_SELECTOR, '[id="card"]').is_displayed()
+
 
 
