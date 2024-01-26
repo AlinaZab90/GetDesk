@@ -1,4 +1,3 @@
-from selenium.webdriver.common.by import By
 from conftest import browser
 from Pages.my_booking_list import *
 
