@@ -1,4 +1,5 @@
-from conftest import browser
+import conftest
+from selenium.webdriver.common.by import By
 from Pages.my_booking_list import *
 
 
@@ -8,10 +9,10 @@ class TestPageMyBookingList:
     def test_booking_list(self, browser):
         open_my_booking_list_page(browser, my_booking_link)
         assert browser.find_element(By.CSS_SELECTOR, '[class="styled-tabs"]').is_displayed()
-        assert browser.find_element(By.XPATH, '//*[@class="title"]').text == "ТЦ Галактика"
+        assert browser.find_element(By.XPATH, '//*[@class="title"]').text == conftest.name
         assert browser.find_element(By.XPATH, '//*[@class="image"]').is_displayed()
-        assert browser.find_element(By.XPATH, '//*[@class="price"]').text == "Общая стоимость: 226 ₽"
-        assert browser.find_element(By.XPATH, '//*[@class="date"]').text == "30.07.2024 - 01.11.2025"
+        assert browser.find_element(By.XPATH, '//*[@class="price"]').text == conftest.price
+        assert browser.find_element(By.XPATH, '//*[@class="date"]').text == conftest.date
 
     def test_tab_completed(self, browser):
         open_my_booking_list_page(browser, my_booking_link)

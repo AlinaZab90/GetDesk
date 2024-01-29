@@ -51,3 +51,15 @@ def login(browser):
     time.sleep(3)
 
 
+
+def click(element, browser):
+    butt = str(element.location['y'])
+    browser.execute_script(f"window.scrollTo (0, {butt:s})")
+    time.sleep(1)
+    element.click()
+
+
+name = "ТЦ Галактика"
+price = "Общая стоимость: 226 ₽"
+date = "30.07.2024 - 01.11.2025"
+

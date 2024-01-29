@@ -1,9 +1,6 @@
 import time
-import pytest
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from conftest import browser
-from conftest import login
 from selenium.common.exceptions import NoSuchElementException
 
 base_page_link = "https://getdesk.com/"
