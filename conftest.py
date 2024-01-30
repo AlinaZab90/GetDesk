@@ -59,6 +59,9 @@ def click(element, browser):
     element.click()
 
 
+def current_url(browser):
+    return browser.current_url
+
 name = "ТЦ Галактика"
 price = "Общая стоимость: 226 ₽"
 date = "30.07.2024 - 01.11.2025"

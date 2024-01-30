@@ -1,6 +1,6 @@
 import conftest
 from selenium.webdriver.common.by import By
-from Pages.my_booking_list import *
+from Pages.renter_my_booking_list import *
 
 
 
@@ -17,7 +17,7 @@ class TestPageMyBookingList:
     def test_tab_completed(self, browser):
         open_my_booking_list_page(browser, my_booking_link)
         browser.find_element(By.LINK_TEXT, 'Завершенные').click()
-        url = current_url(browser)
+        url = conftest.current_url(browser)
         assert url == "https://getdesk.com/bookings/completed"
 
 
