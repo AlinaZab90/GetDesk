@@ -19,4 +19,11 @@ class TestLandlordReservationsList:
         url = current_url(browser)
         assert url == "https://getdesk.com/orders?page=1&status=paid&sortBy=default&order=asc"
         assert browser.find_element(By.XPATH, '//*[@class="number id"]').text == "184"
+        assert browser.find_element(By.XPATH, '//*[@class="number transaction"]').is_displayed()
+        assert browser.find_element(By.XPATH, '//*[@class="section-item"]//div[@class="name"]').is_displayed()
+        assert browser.find_element(By.XPATH, '//*[@class="addres"]').is_displayed()
+        assert browser.find_element(By.XPATH, '//*[@class="date-time"]').is_displayed()
+        assert browser.find_element(By.XPATH, '//*[@class="order-price"]').is_displayed()
+        assert browser.find_element(By.XPATH, '//*[@class="renter"]//div[@class="name-wrapp"]').text == 'Алина\nЗабайдулина'
+
 
