@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from conftest import browser
 
 class TestBasePase:
-    @pytest.mark.parametrize('language', ["ru", "en", "fr"])
+    @pytest.mark.parametrize('language', ["en", "fr", "ru"])
     def test_base_page(self, browser, language):
         link = f"https://getdesk.com/{language}"
         browser.get(link)

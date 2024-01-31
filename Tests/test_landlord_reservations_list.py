@@ -16,8 +16,8 @@ class TestLandlordReservationsList:
         time.sleep(2)
         browser.find_element(By.XPATH, '//div[text()="Предстоящие"]').click()
         time.sleep(2)
-        url = current_url(browser)
-        assert url == "https://getdesk.com/orders?page=1&status=paid&sortBy=default&order=asc"
+
+        assert browser.current_url == "https://getdesk.com/orders?page=1&status=paid&sortBy=default&order=asc"
         assert browser.find_element(By.XPATH, '//*[@class="number id"]').text == "184"
         assert browser.find_element(By.XPATH, '//*[@class="number transaction"]').is_displayed()
         assert browser.find_element(By.XPATH, '//*[@class="section-item"]//div[@class="name"]').is_displayed()

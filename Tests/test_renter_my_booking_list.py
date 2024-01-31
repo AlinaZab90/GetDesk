@@ -17,13 +17,11 @@ class TestPageMyBookingList:
     def test_tab_completed(self, browser):
         open_my_booking_list_page(browser, my_booking_link)
         browser.find_element(By.LINK_TEXT, 'Завершенные').click()
-        url = conftest.current_url(browser)
-        assert url == "https://getdesk.com/bookings/completed"
+        assert browser.current_url == "https://getdesk.com/bookings/completed"
 
 
     def test_tab_canceled(self, browser):
         open_my_booking_list_page(browser, my_booking_link)
         browser.find_element(By.LINK_TEXT, 'Отмененные').click()
-        url = current_url(browser)
-        assert url == "https://getdesk.com/bookings/removed"
+        assert browser.current_url == "https://getdesk.com/bookings/removed"
 
