@@ -61,7 +61,6 @@ def click(element, browser):
     element.click()
 
 
-
 def get_request(browser, url):
     js = f'''
                    const req = new XMLHttpRequest();

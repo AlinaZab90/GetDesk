@@ -1,6 +1,3 @@
-import time
-import json
-from selenium.webdriver.common.by import By
 from Pages.landlord_objects_list import *
 from conftest import *
 
@@ -20,6 +17,5 @@ class TestLandlordObjects:
         url = "https://getdesk.com/xhr/office"
         response = get_request(browser, url)
         assert json_element(response, 66)["status"] == "published"
-
 
 # response = webdriver.request('POST', 'url here', data={"param1": "value1"})
