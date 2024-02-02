@@ -57,8 +57,9 @@ def login(browser):
 def click(element, browser):
     butt = str(element.location['y'])
     browser.execute_script(f"window.scrollTo (0, {butt:s})")
-    time.sleep(1)
+    time.sleep(3)
     element.click()
+    time.sleep(2)
 
 
 def get_request(browser, url):

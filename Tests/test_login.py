@@ -11,13 +11,14 @@ class TestLogin:
     def test_authorized_test_browser(self, browser):
         browser.get("https://getdesk.com/")
         browser.find_element(By.CSS_SELECTOR, '[class="user-btn"]').click()
-        auth = browser.find_element_by_link_text("Profile").text
-        assert auth == "Profile"
+        time.sleep(2)
+        auth = browser.find_element(By.XPATH, '//a[text()="Профиль"]').text
+        assert auth == "Профиль"
 
     def test_google_authorized(self, browser_not_authorized):
         browser_not_authorized.get(login_link)
         browser_not_authorized.implicitly_wait(10)
-        browser_not_authorized.find_element_by_link_text("Login with Google").click()
+        browser_not_authorized.find_element(By.XPATH, '//*[text()="Login with Google"]').click()
         assert browser_not_authorized.find_element(By.CSS_SELECTOR, '[id="identifierId"]').is_displayed()
 
     def test_invalid_data(self, browser_not_authorized):

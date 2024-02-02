@@ -1,5 +1,6 @@
 import time
 from selenium.webdriver.common.by import By
+from conftest import *
 
 
 class TestRegistration:
