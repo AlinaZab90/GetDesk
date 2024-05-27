@@ -14,8 +14,8 @@ def calculator(browser):
     calendar = browser.find_element(By.CSS_SELECTOR, '[class="input-field-calendar-title"]')
     calendar.click()
     browser.find_element(By.CSS_SELECTOR, '[class="lightpick__next-action"]').click()
-    browser.find_element(By.XPATH, '//div[@class="lightpick__days"]/div[5]').click()
-    browser.find_element(By.XPATH, '//div[@class="lightpick__days"]/div[6]').click()
+    browser.find_element(By.XPATH, '//div[@class="lightpick__days"]/div[15]').click()
+    browser.find_element(By.XPATH, '//div[@class="lightpick__days"]/div[16]').click()
     browser.find_element(By.CSS_SELECTOR, '[id="btnChoiceDate"]').click()
     return browser.find_element(By.CSS_SELECTOR, '[class="office-page-calendar-note"]').text
 
@@ -30,6 +30,8 @@ def booking_basket(browser):
     browser.find_element(By.CSS_SELECTOR, '[id="bookingRooms"]').click()
     time.sleep(2)
     return browser.find_element(By.CSS_SELECTOR, '[class="to-result"]').text
+#//*[@class="to-result"]/span
+
 
 def iframe(browser):
     iframe = browser.find_element(By.XPATH, '//iframe[@allow="payment"]')

@@ -11,7 +11,7 @@ login_link = "https://getdesk.com/en/login"
 def browser():
     print("\nstart browser for test..")
     options = webdriver.ChromeOptions()
-    # options.add_argument("--headless")
+    #options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument(r"--user-data-dir=C:\Users\user\PycharmProjects\GetDesk\Google_Chrome")
     options.add_argument(r'--profile-directory=Profile 3')
@@ -43,8 +43,8 @@ def browser_not_authorized():
 def login(browser):
     link = "https://getdesk.com/ru/login"
     browser.get(link)
-    browser.find_element(By.CSS_SELECTOR, "[name='email']").send_keys("...")
-    browser.find_element(By.CSS_SELECTOR, '[name="password"]').send_keys("...")
+    browser.find_element(By.CSS_SELECTOR, "[name='email']").send_keys("alina.zabaidulina@mail.ru")
+    browser.find_element(By.CSS_SELECTOR, '[name="password"]').send_keys("Gasprom1990")
 
     button = browser.find_element(By.CSS_SELECTOR, '[class="btn btn-accent"]')
     button.click()

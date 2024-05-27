@@ -20,7 +20,7 @@ class TestBooking:
         open_page(browser, office_page_link)
         calculator(browser)
         summ = booking_basket(browser)
-        assert summ == 'Итого\n5 650 ₽'
+        assert summ == 'Итого\n5000 ₽'
 
 
 #Cloudpayments
@@ -29,6 +29,7 @@ class TestBooking:
         calculator(browser)
         summ = booking_basket(browser)
         cp_summ = (iframe(browser)).split(",")[0]
+        cp_summ = cp_summ.strip(" ")
         assert cp_summ in summ
 
 

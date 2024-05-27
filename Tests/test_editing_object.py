@@ -42,11 +42,11 @@ class TestEditingObject:
         click(browser.find_element(By.XPATH, '//span[text()="3. Помещения"]'), browser)
         time.sleep(2)
 #Добавление нового помещения
-        click(browser.find_element(By.XPATH, '//button[@class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium OfficeSpace_add__kcp3D css-1ujsas3"]'), browser)
-        click(browser.find_element(By.XPATH, '//*[@class="OfficeWarning_buttons__8CO0+"]/button[text()="Добавить"]'), browser)
-        click(browser.find_element(By.XPATH, '//*[@class="OfficeRequest_buttons__nAzLY"]/button[text()="Остаться"]'), browser)
-        click(browser.find_element(By.XPATH, '//*[@class="OfficeSpaceList_wrapper__k+sAq"]/div[last()]'), browser)
-
+        click(browser.find_element(By.XPATH, '//*[@class="sf"]//*[@type="button"]'), browser)
+        click(browser.find_element(By.XPATH, '//*[@class="zf"]/*[@type="button"][text()="Добавить"]'), browser)
+        click(browser.find_element(By.XPATH, '//*[@class="lf"]/button[text()="Остаться"]'), browser)
+        click(browser.find_element(By.XPATH, '//*[@class="vh wh"]/div[last()]'), browser)
+#//*[@class="zf"]/*[@type="button"][text()="Добавить"]
 #Статус черновик
         response = get_request(browser, f"https://getdesk.com/xhr/office/{id}/edit")
         assert response["status"] == "draft"
