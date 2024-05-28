@@ -27,10 +27,7 @@ class TestBooking:
     def test_iframe(self, browser):
         open_page(browser, office_page_link)
         calculator(browser)
-        summ = booking_basket(browser)
-        cp_summ = (iframe(browser)).split(",")[0]
-        cp_summ = cp_summ.strip(" ")
-        assert cp_summ in summ
-
-
+        summ_gd = booking_basket(browser)
+        cp_summ = (iframe(browser))
+        assert cp_summ == summ_gd
 

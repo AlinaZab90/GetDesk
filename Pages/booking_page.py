@@ -1,6 +1,7 @@
 import time
 from selenium.webdriver.common.by import By
 from conftest import browser
+import re
 
 
 def open_page(browser, office_page_link):
@@ -20,6 +21,7 @@ def calculator(browser):
     return browser.find_element(By.CSS_SELECTOR, '[class="office-page-calendar-note"]').text
 
 
+
 def booking_basket(browser):
     browser.implicitly_wait(5)
     browser.find_element(By.XPATH, '//button[@data-id="117"]').click()
@@ -29,12 +31,16 @@ def booking_basket(browser):
     time.sleep(2)
     browser.find_element(By.CSS_SELECTOR, '[id="bookingRooms"]').click()
     time.sleep(2)
-    return browser.find_element(By.CSS_SELECTOR, '[class="to-result"]').text
-#//*[@class="to-result"]/span
+    summ_gd = int(re.sub(r"\D", '', browser.find_element(By.CSS_SELECTOR, '[class="to-result"]').text))
+    return summ_gd
 
 
 def iframe(browser):
     iframe = browser.find_element(By.XPATH, '//iframe[@allow="payment"]')
     browser.switch_to.frame(iframe)
     time.sleep(2)
-    return browser.find_element(By.CSS_SELECTOR, '[class="text p0 cost-value"]').text
+    summ_cp = browser.find_element(By.CSS_SELECTOR, '[class="text p0 cost-value"]').text
+    summ_cp = summ_cp.split(",")[0]
+    summ_cp = re.sub(r'[^\d\s]', '', summ_cp)
+    summ_cp = summ_cp.replace(' ', '')
+    return int(summ_cp)
