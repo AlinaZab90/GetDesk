@@ -19,3 +19,4 @@ def landlord_canceled_blok(browser):
     message.send_keys('Передумал')
     time.sleep(1)
 
+#//*[contains(@class, 'Test')]

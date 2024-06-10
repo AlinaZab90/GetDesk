@@ -43,8 +43,8 @@ def browser_not_authorized():
 def login(browser):
     link = "https://getdesk.com/ru/login"
     browser.get(link)
-    browser.find_element(By.CSS_SELECTOR, "[name='email']").send_keys("alina.zabaidulina@mail.ru")
-    browser.find_element(By.CSS_SELECTOR, '[name="password"]').send_keys("Gasprom1990")
+    browser.find_element(By.CSS_SELECTOR, "[name='email']").send_keys("?")
+    browser.find_element(By.CSS_SELECTOR, '[name="password"]').send_keys("?")
 
     button = browser.find_element(By.CSS_SELECTOR, '[class="btn btn-accent"]')
     button.click()

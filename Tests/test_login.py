@@ -1,13 +1,22 @@
 import time
 from selenium.webdriver.common.by import By
-from conftest import browser
-from conftest import browser_not_authorized
-from conftest import login_link
+from conftest import *
+
 
 
 
 
 class TestLogin:
+
+    def test_authorization(self, browser):
+        login(browser)
+        browser.implicitly_wait(10)
+        time.sleep(5)
+        browser.find_element(By.XPATH, '//*[@class="btn btn-user-menu"]').click()
+        text = browser.find_element(By.XPATH, '//a[text()="Профиль"]').text
+        assert text == "Профиль"
+
+
     def test_authorized_test_browser(self, browser):
         browser.get("https://getdesk.com/")
         browser.find_element(By.CSS_SELECTOR, '[class="user-btn"]').click()
