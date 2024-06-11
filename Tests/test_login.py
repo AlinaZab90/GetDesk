@@ -3,9 +3,6 @@ from selenium.webdriver.common.by import By
 from conftest import *
 
 
-
-
-
 class TestLogin:
 
     def test_authorization(self, browser):
@@ -15,7 +12,6 @@ class TestLogin:
         browser.find_element(By.XPATH, '//*[@class="btn btn-user-menu"]').click()
         text = browser.find_element(By.XPATH, '//a[text()="Профиль"]').text
         assert text == "Профиль"
-
 
     def test_authorized_test_browser(self, browser):
         browser.get("https://getdesk.com/")
@@ -41,3 +37,13 @@ class TestLogin:
         error = browser_not_authorized.find_element(By.XPATH, '//*[text()="Incorrect login or password"]').text
         assert error == "Incorrect login or password"
 
+    def test_verification_of_authorization(self, browser):
+        url = 'https://getdesk.com/xhr/index/auth'
+        js = f'''
+        var xhr = new XMLHttpRequest();
+            xhr.open('GET', '{url}', false);
+            xhr.send();
+            xhr.responseText'''
+
+        preview = browser.execute_script(js)
+        preview = browser.execute_script("return 42;")

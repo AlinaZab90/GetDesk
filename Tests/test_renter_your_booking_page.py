@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 
 
 
-your_booking_page_link = "https://getdesk.com/bookings/120"
+your_booking_page_link = "https://getdesk.com/bookings/67"
 
 class TestYourBookingPage:
     def test_your_booking_page(self, browser):
@@ -18,6 +18,10 @@ class TestYourBookingPage:
         open_your_booking_page_renter(browser, your_booking_page_link)
         d = canceled_block_renter(browser)
         time.sleep(3)
-        assert browser.find_element(By.XPATH, '//*[@class="BookingItemCancel_title__MguWH"]')
+        button = browser.find_element(By.XPATH, '//*[@class="Pd"]/button')
+        assert button.is_displayed()
+        button.click()
+        time.sleep(2)
+        assert browser.find_element(By.XPATH, '//*[@name="cancel_cause"]').is_displayed()
 
 

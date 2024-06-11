@@ -11,7 +11,8 @@ def open_your_booking_page_renter(browser, your_booking_page_link):
 
 
 def canceled_block_renter(browser):
-    canceled_button = browser.find_element(By.CSS_SELECTOR, '[class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium Button_button__1e85p Button_isDefault__FQC72 Button_isWhite__5rAx9 BookingItemCancellation_button__HBwA8 css-1hw9j7s"]')
+    time.sleep(3)
+    canceled_button = browser.find_element(By.XPATH, '//*[@class="xb"]/button')
     click(canceled_button, browser)
     return canceled_button
 

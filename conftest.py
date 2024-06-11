@@ -43,8 +43,8 @@ def browser_not_authorized():
 def login(browser):
     link = "https://getdesk.com/ru/login"
     browser.get(link)
-    browser.find_element(By.CSS_SELECTOR, "[name='email']").send_keys("?")
-    browser.find_element(By.CSS_SELECTOR, '[name="password"]').send_keys("?")
+    browser.find_element(By.CSS_SELECTOR, "[name='email']").send_keys("alina.zabaidulina@mail.ru")
+    browser.find_element(By.CSS_SELECTOR, '[name="password"]').send_keys("Gasprom1990")
 
     button = browser.find_element(By.CSS_SELECTOR, '[class="btn btn-accent"]')
     button.click()
@@ -80,9 +80,9 @@ def json_element(response, key):
         return i
 
 
-name = "ТЦ Галактика"
-price = "Общая стоимость: 226 ₽"
-date = "30.07.2024 - 01.11.2025"
+name = "Эльтаун"
+price = "Общая стоимость: 5 085 ₽"
+date = "14.08.2023 - 16.08.2024"
 
 # js =
 '''const req = new XMLHttpRequest();
