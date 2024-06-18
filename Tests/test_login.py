@@ -7,6 +7,7 @@ class TestLogin:
 
     def test_authorization(self, browser):
         login(browser)
+        browser.get("https://getdesk.com/ru/login")
         browser.implicitly_wait(10)
         time.sleep(5)
         browser.find_element(By.XPATH, '//*[@class="btn btn-user-menu"]').click()
@@ -46,4 +47,5 @@ class TestLogin:
             xhr.responseText'''
 
         preview = browser.execute_script(js)
-        preview = browser.execute_script("return 42;")
+        assert preview == "h"
+

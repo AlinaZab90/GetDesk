@@ -3,7 +3,7 @@ from conftest import *
 from Pages.editing_object import *
 from selenium.webdriver.common.keys import Keys
 
-id = "49"
+id = "66"
 link_object = f"https://getdesk.com/offices/edit/{id}"
 
 

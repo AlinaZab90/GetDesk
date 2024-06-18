@@ -3,6 +3,8 @@ import pytest
 import json
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
+
 
 login_link = "https://getdesk.com/en/login"
 
@@ -17,6 +19,7 @@ def browser():
     options.add_argument(r'--profile-directory=Profile 3')
     options.add_argument('--allow-profiles-outside-user-dir')
     options.add_argument('--enable-profile-shortcut-manager')
+    options.add_argument('--enable-sync')
 
     browser = webdriver.Chrome(options=options)
     browser.maximize_window()
@@ -41,17 +44,17 @@ def browser_not_authorized():
 
 
 def login(browser):
-    link = "https://getdesk.com/ru/login"
+    link = "https://getdesk.com/xhr/index/auth"
     browser.get(link)
-    browser.find_element(By.CSS_SELECTOR, "[name='email']").send_keys("alina.zabaidulina@mail.ru")
-    browser.find_element(By.CSS_SELECTOR, '[name="password"]').send_keys("Gasprom1990")
+    status = json.loads(browser.find_element(By.TAG_NAME, 'pre').text)['message']
+    if status:
+        return
 
+    browser.get("https://getdesk.com/ru/login")
+    browser.find_element(By.CSS_SELECTOR, "[name='email']").send_keys("...")
+    browser.find_element(By.CSS_SELECTOR, '[name="password"]').send_keys("...")
     button = browser.find_element(By.CSS_SELECTOR, '[class="btn btn-accent"]')
     button.click()
-
-    time.sleep(3)
-    button.click()
-    time.sleep(3)
 
 
 def click(element, browser):

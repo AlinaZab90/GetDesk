@@ -14,12 +14,12 @@ class TestLandlordReservationsList:
     def test_landlord_tab(self, browser):
         open_landlord_reservations_list(browser, landlord_reservations_list)
         time.sleep(2)
-        browser.find_element(By.XPATH, '//div[text()="Предстоящие"]').click()
+        browser.find_element(By.XPATH, '//div[text()="Отмененные"]').click()
         time.sleep(2)
 
-        assert browser.current_url == "https://getdesk.com/orders?page=1&status=paid&sortBy=default&order=asc"
-        assert browser.find_element(By.XPATH, '//*[@class="number id"]').text == "184"
-        assert browser.find_element(By.XPATH, '//*[@class="number transaction"]').is_displayed()
+        assert browser.current_url == "https://getdesk.com/orders?page=1&status=canceled&sortBy=default&order=asc"
+        assert browser.find_element(By.XPATH, '//*[@class="number order-id"]').text == "162"
+        assert browser.find_element(By.XPATH, '//*[@class="number order-transaction"]').is_displayed()
         assert browser.find_element(By.XPATH, '//*[@class="section-item"]//div[@class="name"]').is_displayed()
         assert browser.find_element(By.XPATH, '//*[@class="addres"]').is_displayed()
         assert browser.find_element(By.XPATH, '//*[@class="date-time"]').is_displayed()

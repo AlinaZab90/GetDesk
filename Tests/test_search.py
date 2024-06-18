@@ -4,7 +4,7 @@ from conftest import browser
 from selenium.common.exceptions import NoSuchElementException
 
 base_page_link = "https://getdesk.com/"
-search_link = "https://getdesk.com/ru/search?booking_type=with_confirmation&zoom=11&ne_lat=72.03955752527436&ne_lng=102.75887319287109&sw_lat=71.88818944451735&sw_lng=102.1223528071289"
+search_link = "https://getdesk.com/ru/search?booking_type=with_confirmation&zoom=11&ne_lat=72.03839295057298&ne_lng=102.61193105419922&sw_lat=71.88936343282951&sw_lng=102.26929494580078"
 
 
 class TestSearch:
@@ -30,6 +30,7 @@ class TestSearch:
     def test_booking_type_direct(self, browser):
         browser.get(search_link)
         browser.implicitly_wait(10)
+        assert browser.find_element(By.CSS_SELECTOR, '[data-location="50"]').is_displayed()
         browser.find_element(By.CSS_SELECTOR, '[class="switch-toggle"]').click()
         time.sleep(5)
         try:
