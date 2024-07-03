@@ -51,8 +51,8 @@ def login(browser):
         return
 
     browser.get("https://getdesk.com/ru/login")
-    browser.find_element(By.CSS_SELECTOR, "[name='email']").send_keys("...")
-    browser.find_element(By.CSS_SELECTOR, '[name="password"]').send_keys("...")
+    browser.find_element(By.CSS_SELECTOR, "[name='email']").send_keys("alina.zabaidulina@mail.ru")
+    browser.find_element(By.CSS_SELECTOR, '[name="password"]').send_keys("Gasprom1990")
     button = browser.find_element(By.CSS_SELECTOR, '[class="btn btn-accent"]')
     button.click()
 

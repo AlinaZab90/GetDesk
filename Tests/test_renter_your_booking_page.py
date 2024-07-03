@@ -18,7 +18,7 @@ class TestYourBookingPage:
         open_your_booking_page_renter(browser, your_booking_page_link)
         d = canceled_block_renter(browser)
         time.sleep(3)
-        button = browser.find_element(By.XPATH, '//*[@class="Pd"]/button')
+        button = browser.find_element(By.XPATH, '//*[contains(@class, "MuiButtonBase-root MuiButton-root MuiButton-contained") and text()="Продолжить"]')
         assert button.is_displayed()
         button.click()
         time.sleep(2)
