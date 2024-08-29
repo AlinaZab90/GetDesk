@@ -2,7 +2,7 @@ import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from conftest import browser
+from conftest import *
 
 class TestBasePase:
     @pytest.mark.parametrize('language', ["en", "fr", "ru"])
@@ -18,4 +18,28 @@ class TestBasePase:
 
         assert button.is_displayed()
         assert button.text == localization[language]
+
+    def test_popular_slider(self, browser):
+        browser.get('https://getdesk.com/')
+        click(browser.find_element(By.XPATH, '//*[@id="mainPopularSlider"]/a'), browser)
+        assert browser.find_element(By.XPATH, '//*[@class="office-page-title"]').is_displayed()
+
+    def test_direct_slider(self, browser):
+        browser.get('https://getdesk.com/')
+        click(browser.find_element(By.XPATH, '//*[@id="mainDirectSlider"]/a'), browser)
+        assert browser.find_element(By.XPATH, '//*[@class="office-page-title"]').is_displayed()
+
+
+    def test_video_block_button(self, browser):
+        browser.get('https://getdesk.com/')
+        browser.execute_script("arguments[0].scrollIntoView();", browser.find_element(By.XPATH, '//*[contains(@class, "main-video-content")]'))
+        time.sleep(2)
+        browser.find_element(By.XPATH, '//section[@class="main-video"]//*[contains(@class,"main-video-content") and contains(@class,"fadeRight")]/a').click()
+        assert browser.find_element(By.XPATH, '//*[@class="search-page_item"]').is_displayed()
+
+
+    def test_promo_content(self, browser):
+        browser.get('https://getdesk.com/')
+        click(browser.find_element(By.XPATH, '//section[@class="main-promo"]//*[contains(@class,"main-promo-content") and contains(@class,"fadeRight")]/a'), browser)
+        assert browser.find_element(By.XPATH, '//*[@class="business-tag"]')
 

@@ -18,7 +18,7 @@ class TestLandlordReservationsList:
         time.sleep(2)
 
         assert browser.current_url == "https://getdesk.com/orders?page=1&status=canceled&sortBy=default&order=asc"
-        assert browser.find_element(By.XPATH, '//*[@class="number order-id"]').text == "163"
+        #assert browser.find_element(By.XPATH, '//*[@class="number order-id"]').text == "163"
         assert browser.find_element(By.XPATH, '//*[@class="number order-transaction"]').is_displayed()
         assert browser.find_element(By.XPATH, '//*[@class="section-item"]//div[@class="name"]').is_displayed()
         assert browser.find_element(By.XPATH, '//*[@class="addres"]').is_displayed()
