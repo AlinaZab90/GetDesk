@@ -17,6 +17,7 @@ class TestBooking:
         message = calculator(browser)
         assert message == "Время бронирования рассчитывается по местному времени объекта"
 
+
 #Добавление помещений в корзину
     def test_booking_basket(self, browser):
         login(browser)

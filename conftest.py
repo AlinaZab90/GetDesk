@@ -76,6 +76,14 @@ def get_request(browser, url):
     json_message = browser.execute_script(js)
     return json.loads(json_message)
 
+def element_exist(browser, selector):
+    try:
+        browser.find_element(By.XPATH, selector)
+        exist = True
+    except NoSuchElementException:
+        exist = False
+    return exist
+
 
 def json_element(response, key):
     for i in response:
