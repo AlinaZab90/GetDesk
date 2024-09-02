@@ -11,6 +11,7 @@ search_link = "https://getdesk.com/ru/search?booking_type=with_confirmation&zoom
 class TestSearch:
 
     def test_search(self, browser):
+#Переход в поиск
         browser.get(base_page_link)
         browser.implicitly_wait(10)
         a = browser.find_element(By.CSS_SELECTOR, '[id="mainSearchCity"]')
@@ -19,6 +20,14 @@ class TestSearch:
         browser.find_element(By.CSS_SELECTOR, '[id="btnFindCity"]').click()
         instant_booking = browser.find_element(By.CSS_SELECTOR, "[class='switch-label']")
         assert instant_booking.is_displayed()
+
+    def test_search_result(self, browser):
+#Отображение объектов
+        browser.get(search_link)
+        browser.implicitly_wait(10)
+        assert browser.find_element(By.CSS_SELECTOR, '[data-location="66"]').is_displayed()
+        assert browser.find_element(By.CSS_SELECTOR, '[data-location="50"]').is_displayed()
+        assert browser.find_element(By.CSS_SELECTOR, '[data-location="49"]').is_displayed()
 
 
     def test_filter_date(self, browser):
@@ -31,8 +40,10 @@ class TestSearch:
         browser.find_element(By.XPATH, '//*[@data-set="setOfficeDateTime"]').click()
         time.sleep(2)
 
-#Выбраны только часовые бронирования. При выборе дней - не отображатеся в поиске
+#Есть только цена за час. При выборе дней - не отображатеся в поиске
         assert element_exist(browser, '//*[@data-location="49"]') == False
+        assert browser.find_element(By.XPATH, '//*[@data-location="50"]').is_displayed()
+        assert browser.find_element(By.XPATH, '//*[@data-location="66"]').is_displayed()
 
 
     def test_filter_hour(self, browser):
@@ -62,19 +73,54 @@ class TestSearch:
         assert browser.find_element(By.XPATH, '//*[@data-location="66"]').is_displayed()
 
 
-
-    def test_search_result(self, browser):
+    def test_amenitys(self, browser):
+#Выбор удобства
         browser.get(search_link)
-        browser.implicitly_wait(10)
-        assert browser.find_element(By.CSS_SELECTOR, '[data-location="66"]').is_displayed()
-        assert browser.find_element(By.CSS_SELECTOR, '[data-location="50"]').is_displayed()
+        browser.find_element(By.XPATH, '//*[@id="filterCheck"]').click()
+        click(browser.find_element(By.XPATH, '//*[@for="amenity32"]'), browser)
+        click(browser.find_element(By.XPATH, '//*[@data-set="setOfficeAmenities"]'), browser)
+        time.sleep(3)
+        assert element_exist(browser, '//*[@data-location="50"]') == False
+        assert element_exist(browser, '//*[@data-location="66"]') == False
+        assert browser.find_element(By.XPATH, '//*[@data-location="49"]').is_displayed()
+
+
+
 
 
     def test_booking_type_direct(self, browser):
         browser.get(search_link)
         browser.implicitly_wait(10)
-        assert browser.find_element(By.CSS_SELECTOR, '[data-location="50"]').is_displayed()
-        browser.find_element(By.CSS_SELECTOR, '[class="switch-toggle"]').click()
-        time.sleep(5)
+        assert browser.find_element(By.XPATH, '//*[@data-location="49"]').is_displayed()
+        assert browser.find_element(By.XPATH, '//*[@data-location="50"]').is_displayed()
+        assert browser.find_element(By.XPATH, '//*[@data-location="66"]').is_displayed()
+        browser.find_element(By.XPATH, '//*[@class="switch-button"]').click()
+        time.sleep(3)
+        assert element_exist(browser, '//*[@data-location="49"]') == False
         assert element_exist(browser, '//*[@data-location="50"]') == False
+        browser.find_element(By.XPATH, '//*[@data-location="66"]').is_displayed()
+
+
+    def test_all_filters(self, browser):
+        browser.get(search_link)
+        assert browser.find_element(By.XPATH, '//*[@data-location="49"]').is_displayed()
+        assert browser.find_element(By.XPATH, '//*[@data-location="50"]').is_displayed()
+        assert browser.find_element(By.XPATH, '//*[@data-location="66"]').is_displayed()
+#Даты и тип помещения = отображается стоимость
+        browser.find_element(By.XPATH, '//*[@id="filterDate"]').click()
+        browser.find_element(By.XPATH, '//*[@class="lightpick__next-action"]').click()
+        browser.find_element(By.XPATH, '//div[@class="lightpick__days"]/div[15]').click()
+        browser.find_element(By.XPATH, '//div[@class="lightpick__days"]/div[16]').click()
+        browser.find_element(By.XPATH, '//*[@data-set="setOfficeDateTime"]').click()
+
+        browser.find_element(By.XPATH, '//*[@id="filterQuanti"]').click()
+        browser.find_element(By.XPATH, '//input[@id="meeting_rooms"]/parent::*/span[@class="quantity-plus"]').click()
+        browser.find_element(By.XPATH, '//*[@data-set="setOfficeParams"]').click()
+        time.sleep(3)
+        assert browser.find_element(By.XPATH, '//*[@class="search-page_item-price-label"]').is_displayed()
+        assert browser.find_element(By.XPATH, '//*[@class="search-page_item-price-cost"]').is_displayed()
+        summ = browser.find_element(By.XPATH, '//*[@class="search-page_item-price-cost"]').text
+        assert summ.replace(' ', '') == '2000₽'
+
+
 
