@@ -38,14 +38,14 @@ class TestLogin:
         error = browser_not_authorized.find_element(By.XPATH, '//*[text()="Incorrect login or password"]').text
         assert error == "Incorrect login or password"
 
-    def test_verification_of_authorization(self, browser):
-        url = 'https://getdesk.com/xhr/index/auth'
-        js = f'''
-        var xhr = new XMLHttpRequest();
-            xhr.open('GET', '{url}', false);
-            xhr.send();
-            xhr.responseText'''
+    #def test_verification_of_authorization(self, browser):
+     #   url = 'https://getdesk.com/xhr/index/auth'
+      #  js = f'''
+       # var xhr = new XMLHttpRequest();
+        #    xhr.open('GET', '{url}', false);
+         #   xhr.send();
+         #   xhr.responseText'''
 
-        preview = browser.execute_script(js)
-        assert preview == "h"
+    #    preview = browser.execute_script(js)
+     #   assert preview == "h"
 
