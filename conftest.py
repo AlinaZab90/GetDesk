@@ -24,7 +24,6 @@ def browser():
     browser = webdriver.Chrome(options=options)
     browser.maximize_window()
     browser.implicitly_wait(5)
-    # browser.get("https://getdesk.com/")
 
     yield browser
     print("\nquit browser..")
@@ -56,6 +55,7 @@ def login(browser):
     time.sleep(3)
     button = browser.find_element(By.CSS_SELECTOR, '[class="btn btn-accent"]')
     button.click()
+    time.sleep(2)
 
 
 def click(element, browser):

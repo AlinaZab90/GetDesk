@@ -42,10 +42,10 @@ class TestEditingObject:
         click(browser.find_element(By.XPATH, '//span[text()="3. Помещения"]'), browser)
         time.sleep(2)
 #Добавление нового помещения
-        click(browser.find_element(By.XPATH, '//*[@class="sf"]//*[@type="button"]'), browser)
-        click(browser.find_element(By.XPATH, '//*[@class="zf"]/*[@type="button"][text()="Добавить"]'), browser)
-        click(browser.find_element(By.XPATH, '//*[@class="lf"]/button[text()="Остаться"]'), browser)
-        click(browser.find_element(By.XPATH, '//*[@class="vh wh"]/div[last()]'), browser)
+        click(browser.find_element(By.XPATH, '//*[contains(@class, "Space_wrapper")]/button'), browser)
+        click(browser.find_element(By.XPATH, '//*[contains(@class, "Warning_buttons")]/button[text()="Добавить"]'), browser)
+        click(browser.find_element(By.XPATH, '//*[contains(@class, "Request_buttons")]/button[2]'), browser)
+        click(browser.find_element(By.XPATH, '//*[contains(@class, "List_wrapper")]/div[last()]'), browser)
 #//*[@class="zf"]/*[@type="button"][text()="Добавить"]
 #Статус черновик
         response = get_request(browser, f"https://getdesk.com/xhr/office/{id}/edit")
