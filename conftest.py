@@ -45,8 +45,8 @@ def browser_not_authorized():
 def login(browser):
     link = "https://getdesk.com/xhr/index/auth"
     browser.get(link)
-    status = json.loads(browser.find_element(By.TAG_NAME, 'pre').text)['message']
-    if status:
+    status = json.loads(browser.find_element(By.TAG_NAME, 'pre').text)['auth']
+    if status == True:
         return
 
     browser.get("https://getdesk.com/ru/login")

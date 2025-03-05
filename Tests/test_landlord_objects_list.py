@@ -8,8 +8,8 @@ class TestLandlordObjects:
 
     def test_open_landlord_object_list(self, browser):
         open_landlord_objects_list(browser, landlord_objects_list_link)
-        assert browser.find_element(By.XPATH, '//*[@class="ads-account-item"]').is_displayed()
-        assert browser.find_element(By.XPATH, '//*[@class="title" and text()="Эльтаун"]').text == "Эльтаун"
+        assert browser.find_element(By.XPATH, '//*[contains(@class, "Item_wrapper")]').is_displayed()
+        assert browser.find_element(By.XPATH, '//*[contains(@class, "Item_title") and text()="Эльтаун"]').text == "Эльтаун"
         assert browser.find_element(By.XPATH, '//*[@style]').is_displayed()
 
     def test_offices_status(self, browser):

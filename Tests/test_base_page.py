@@ -1,11 +1,17 @@
 import pytest
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from conftest import *
 
+
+
 class TestBasePase:
     @pytest.mark.parametrize('language', ["en", "fr", "ru"])
+    @allure.feature("Base Page Tests")
+    @allure.story("Localization check")
+    @allure.title("Check localization for '{language}'")
     def test_base_page(self, browser, language):
         link = f"https://getdesk.com/{language}"
         browser.get(link)

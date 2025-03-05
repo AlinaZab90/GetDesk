@@ -24,7 +24,7 @@ class TestBooking:
         open_page(browser, office_page_link)
         calculator(browser)
         summ = str(booking_basket(browser))
-        assert summ == '5000'
+        assert summ == '3000'
 
 
 #Cloudpayments

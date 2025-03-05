@@ -23,13 +23,13 @@ class TestLogin:
 
     def test_google_authorized(self, browser_not_authorized):
         browser_not_authorized.get(login_link)
-        browser_not_authorized.implicitly_wait(10)
+        browser_not_authorized.implicitly_wait(5)
         browser_not_authorized.find_element(By.XPATH, '//*[text()="Login with Google"]').click()
         assert browser_not_authorized.find_element(By.CSS_SELECTOR, '[id="identifierId"]').is_displayed()
 
     def test_invalid_data(self, browser_not_authorized):
         browser_not_authorized.get(login_link)
-        browser_not_authorized.implicitly_wait(10)
+        browser_not_authorized.implicitly_wait(5)
         browser_not_authorized.find_element(By.CSS_SELECTOR, "[name='email']").send_keys("test@mail.ru")
         browser_not_authorized.find_element(By.CSS_SELECTOR, '[name="password"]').send_keys("Testtest12345")
         time.sleep(5)
@@ -37,6 +37,18 @@ class TestLogin:
         time.sleep(5)
         error = browser_not_authorized.find_element(By.XPATH, '//*[text()="Incorrect login or password"]').text
         assert error == "Incorrect login or password"
+
+
+    def test_TLS(self, browser_not_authorized):
+        browser_not_authorized.get('https://getdesk.com/ru/registration')
+        browser_not_authorized.implicitly_wait(5)
+        browser_not_authorized.find_element(By.CSS_SELECTOR, "[name='email']").send_keys("test@gd.com")
+        warning = browser_not_authorized.find_element(By.XPATH, '//div[@class="warning"]').text
+        assert warning == 'Внимание! Для работы с этим email убедитесь, что у него настроен TLS.\n''Без этого письма могут не приходить'
+
+
+
+
 
     #def test_verification_of_authorization(self, browser):
      #   url = 'https://getdesk.com/xhr/index/auth'
